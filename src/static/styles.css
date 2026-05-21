@@ -664,3 +664,41 @@ footer {
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+.announcement-banner {
+  background-color: var(--success);
+  color: white;
+  text-align: center;
+  padding: 15px 48px 15px 16px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1100; /* ensure it sits above other content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-text {
+  flex: 1 1 auto;
+}
+
+.announcement-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+}
+
+.announcement-close:focus {
+  outline: 2px solid rgba(255,255,255,0.9);
+  border-radius: 4px;
+}
+
+/* Allow JS to hide the banner using the existing .hidden utility */

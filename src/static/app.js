@@ -8,6 +8,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const activityInput = document.getElementById("activity");
   const closeRegistrationModal = document.querySelector(".close-modal");
 
+  // Announcement banner elements and persistence
+  const announcementBanner = document.getElementById("announcement-banner");
+  const announcementClose = document.getElementById("announcement-close");
+
+  // If the announcement was previously closed, keep it hidden
+  if (announcementBanner && localStorage.getItem("announcementClosed") === "1") {
+    announcementBanner.classList.add("hidden");
+  }
+
+  // Close handler: hide banner and persist choice
+  if (announcementClose && announcementBanner) {
+    announcementClose.addEventListener("click", () => {
+      announcementBanner.classList.add("hidden");
+      try {
+        localStorage.setItem("announcementClosed", "1");
+      } catch (e) {
+        // Ignore storage errors (e.g., Safari private mode)
+        console.warn("Could not persist announcement dismissal", e);
+      }
+    });
+
+    // Allow closing with Escape when focus is inside the banner
+    announcementClose.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape") {
+        announcementBanner.classList.add("hidden");
+        try {
+          localStorage.setItem("announcementClosed", "1");
+        } catch (e) {}
+      }
+    });
+  }
+
   // Search and filter elements
   const searchInput = document.getElementById("activity-search");
   const searchButton = document.getElementById("search-button");
